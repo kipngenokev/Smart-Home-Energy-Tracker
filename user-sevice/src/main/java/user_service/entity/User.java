@@ -18,8 +18,10 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    
     private String firstName;
 
+    
     private String lastName;
 
     private String email;
@@ -28,6 +30,7 @@ public class User {
 
     private boolean alerting;
 
+    
     private double energyAlertingThreshold;
 
 
