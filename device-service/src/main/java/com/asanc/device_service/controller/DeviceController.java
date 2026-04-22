@@ -20,10 +20,17 @@ public class DeviceController {
         DeviceDto device = deviceService.getDeviceById(id);
         return ResponseEntity.ok(device);
     }
-    @PostMapping
+    @PostMapping("/devices")
     public ResponseEntity<DeviceDto> createDevice(@RequestBody DeviceDto deviceDto) {
         DeviceDto createdDevice = deviceService.createDevice(deviceDto);
         return ResponseEntity.ok(createdDevice);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<DeviceDto> updateDeviceById(@PathVariable Long id, @RequestBody DeviceDto deviceDto) {
+        DeviceDto updatedDevice = deviceService.updateDevice(id, deviceDto);
+
+        return ResponseEntity.ok(updatedDevice);
     }
 
 }

@@ -41,4 +41,17 @@ public class DeviceService {
         final Device savedDevice = deviceRepository.save(device);
         return mapToDto(savedDevice);
     }
+
+    public DeviceDto updateDevice(Long id, DeviceDto input) {
+        Device existing = deviceRepository.findById(id)
+                .orElseThrow(() ->
+                        new IllegalArgumentException("Device not found with id "+ id));
+        existing.setName(input.getName());
+        existing.setType(input.getType());
+        existing.setLocation(input.getLocation());
+        existing.setUserId(input.getUserId());
+
+        final Device updatedDevice = deviceRepository.save(existing);
+        return mapToDto(updatedDevice);
+    }
 }
