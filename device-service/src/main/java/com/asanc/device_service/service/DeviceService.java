@@ -54,4 +54,12 @@ public class DeviceService {
         final Device updatedDevice = deviceRepository.save(existing);
         return mapToDto(updatedDevice);
     }
+
+    public void deleteDeviceById(Long id) {
+        if (!deviceRepository.existsById(id)) {
+            throw new IllegalArgumentException("Device not found with id " + id);
+        }
+
+        deviceRepository.deleteById(id);
+    }
 }

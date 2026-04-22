@@ -6,5 +6,6 @@ public enum DeviceType {
     THERMOSTAT,
     LIGHT,
     LOCK,
-    DOORBELL
+    DOORBELL,
+    APPLIANCE
 }
