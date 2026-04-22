@@ -2,6 +2,7 @@ package com.asanc.device_service.service;
 
 import com.asanc.device_service.dto.DeviceDto;
 import com.asanc.device_service.entity.Device;
+import com.asanc.device_service.exception.DeviceNotFoundException;
 import com.asanc.device_service.repository.DeviceRepository;
 import org.springframework.stereotype.Service;
 
@@ -17,7 +18,7 @@ public class DeviceService {
     public DeviceDto getDeviceById(Long id) {
         Device device = deviceRepository.findById(id)
                 .orElseThrow(() ->
-                        new IllegalArgumentException("Device not found with id "+id));
+                        new DeviceNotFoundException("Device not found with id "+id));
         return mapToDto(device);
     }
 
@@ -45,7 +46,7 @@ public class DeviceService {
     public DeviceDto updateDevice(Long id, DeviceDto input) {
         Device existing = deviceRepository.findById(id)
                 .orElseThrow(() ->
-                        new IllegalArgumentException("Device not found with id "+ id));
+                        new DeviceNotFoundException("Device not found with id "+ id));
         existing.setName(input.getName());
         existing.setType(input.getType());
         existing.setLocation(input.getLocation());
@@ -57,7 +58,7 @@ public class DeviceService {
 
     public void deleteDeviceById(Long id) {
         if (!deviceRepository.existsById(id)) {
-            throw new IllegalArgumentException("Device not found with id " + id);
+            throw new DeviceNotFoundException("Device not found with id " + id);
         }
 
         deviceRepository.deleteById(id);
