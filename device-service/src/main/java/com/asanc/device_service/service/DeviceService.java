@@ -30,4 +30,15 @@ public class DeviceService {
         dto.setUserId(device.getUserId());
         return dto;
     }
+
+    public DeviceDto createDevice(DeviceDto input) {
+        Device device = new Device();
+        device.setName(input.getName());
+        device.setType(input.getType());
+        device.setLocation(input.getLocation());
+        device.setUserId(input.getUserId());
+
+        final Device savedDevice = deviceRepository.save(device);
+        return mapToDto(savedDevice);
+    }
 }

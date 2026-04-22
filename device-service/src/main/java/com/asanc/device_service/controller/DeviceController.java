@@ -3,10 +3,7 @@ package com.asanc.device_service.controller;
 import com.asanc.device_service.dto.DeviceDto;
 import com.asanc.device_service.service.DeviceService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("api/v1/devices")
@@ -22,6 +19,11 @@ public class DeviceController {
     public ResponseEntity<DeviceDto> getDeviceById(@PathVariable Long id) {
         DeviceDto device = deviceService.getDeviceById(id);
         return ResponseEntity.ok(device);
+    }
+    @PostMapping
+    public ResponseEntity<DeviceDto> createDevice(@RequestBody DeviceDto deviceDto) {
+        DeviceDto createdDevice = deviceService.createDevice(deviceDto);
+        return ResponseEntity.ok(createdDevice);
     }
 
 }
