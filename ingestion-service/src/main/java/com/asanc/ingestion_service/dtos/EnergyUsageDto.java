@@ -10,5 +10,5 @@ public record EnergyUsageDto (
     Long deviceId,
     double energyConsumed,
     @JsonFormat(shape = JsonFormat.Shape.STRING )
-    Instant timeStamp) {}
+    Instant timestamp) {}
 
