@@ -30,14 +30,15 @@ services:
       KAFKA_CONTROLLER_LISTENER_NAMES: 'CONTROLLER'
 
       KAFKA_LISTENERS: >
-        PLAINTEXT://kafka:9092,
-        EXTERNAL://localhost:9094
+        PLAINTEXT://0.0.0.0:9092,
+        EXTERNAL://0.0.0.0:9094,
+        CONTROLLER://0.0.0.0:9093
 
       KAFKA_ADVERTISED_LISTENERS: >
         PLAINTEXT://kafka:9092,
         EXTERNAL://localhost:9094
 
-      KAFKA_LISTENERS_SECURITY_PROTOCOL_MAP: >
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: >
         CONTROLLER:PLAINTEXT,
         PLAINTEXT:PLAINTEXT,
         EXTERNAL:PLAINTEXT
@@ -61,12 +62,12 @@ services:
     container_name: kafka-ui
     image: ghcr.io/kafbat/kafka-ui:latest
     ports:
-      - "8060:8080"
+      - "8070:8080"
     depends_on:
       - kafka
     environment:
-      KAFKA_CLUSTER_0_NAME: local
-      KAFKA_CLUSTERS_O_BOOTSTRAPPERS: kafka:9092
+      KAFKA_CLUSTERS_0_NAME: local
+      KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: kafka:9092
       DYNAMIC_CONFIG_ENABLED: 'true'
     restart: unless-stopped
 

@@ -10,13 +10,13 @@ public class IngestionController {
 
     private final IngestionService ingestionService;
 
-    public IngestionControlller(IngestionService ingestionService) {
+    public IngestionController(IngestionService ingestionService) {
         this.ingestionService = ingestionService;
     }
 
     @PostMapping
     @ResponseStatus(org.springframework.http.HttpStatus.CREATED)
     public void ingestData(@RequestBody EnergyUsageDto usageDto) {
-        ingestionService.ingestUsage(usageDto);
+        ingestionService.ingestEnergyUsage(usageDto);
     }
 }
